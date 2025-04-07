@@ -73,6 +73,19 @@ def get_profile(member_id: str):
             "身長": "",
             "profile_pic": "https://upload.wikimedia.org/wikipedia/commons/9/92/Nogizaka46_logo.png",
         }
+    if str(member_id).startswith("40008"):
+        return {
+            "member_name_kanji": "6期生",
+            "member_name_kana": "",
+            "member_name_romaji": "rokisei",
+            "repo_name": "rokisei-blog-archive",
+            "SNS": {},
+            "生年月日": "",
+            "血液型": "",
+            "星座": "",
+            "身長": "",
+            "profile_pic": "https://upload.wikimedia.org/wikipedia/commons/9/92/Nogizaka46_logo.png",
+        }
     result = {}
     profile_url = f"https://www.nogizaka46.com/s/n46/artist/{member_id}"
     soup = BeautifulSoup(requests.get(profile_url).content, "lxml")
