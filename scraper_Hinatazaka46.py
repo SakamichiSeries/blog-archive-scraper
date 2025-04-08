@@ -21,6 +21,19 @@ def get_profile(member_id: str):
             "身長": "",
             "profile_pic": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Hinatazaka46_logomark_2021.svg/386px-Hinatazaka46_logomark_2021.svg.png",
         }
+    if str(member_id).startswith("3000"):
+        return {
+            "member_name_kanji": "五期生",
+            "member_name_kana": "",
+            "member_name_romaji": "hinatazaka46-gokisei",
+            "repo_name": "hinatazaka46-gokisei-blog-archive",
+            "SNS": {},
+            "生年月日": "",
+            "血液型": "",
+            "星座": "",
+            "身長": "",
+            "profile_pic": "https://upload.wikimedia.org/wikipedia/commons/thumb/d/d4/Hinatazaka46_logomark_2021.svg/386px-Hinatazaka46_logomark_2021.svg.png",
+        }
     result = {}
 
     profile_url = f"https://www.hinatazaka46.com/s/official/artist/{member_id}"
