@@ -18,6 +18,8 @@ def add_host(img_src_url: str, group: str) -> str:
         return urllib.parse.urljoin("https://images.sakamichi.co/", img_src_url)
     elif group == "H_sba":
         return urllib.parse.urljoin("https://images.sakamichi.co/", img_src_url)
+    elif group == "S_sba":
+        return urllib.parse.urljoin("https://images.sakamichi.co/", img_src_url)
     else:
         print("Exception:add_host", img_src_url, group)
         raise Exception

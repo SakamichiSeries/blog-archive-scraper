@@ -17,6 +17,12 @@ from scraper_Hinatazaka46_sba import (
     get_blog_content as get_blog_content_H_sba,
 )
 
+from scraper_Sakurazaka46_sba import (
+    get_profile as get_profile_S_sba,
+    get_blog_url_list as get_blog_url_list_S_sba,
+    get_blog_content as get_blog_content_S_sba,
+)
+
 # from scraper_Sakurazaka46 import (
 #     get_profile as get_profile_S,
 #     get_blog_url_list as get_blog_url_list_S,
@@ -38,6 +44,8 @@ def get_profile(member_id: str, group: str):
         return get_profile_K_sba(member_id)
     elif group == "H_sba":
         return get_profile_H_sba(member_id)
+    elif group == "S_sba":
+        return get_profile_S_sba(member_id)
     # elif group == "H":
     #     return get_profile_H(member_id)
     # elif group == "S":
@@ -51,6 +59,8 @@ def get_blog_url_list(member_id: str, previous_blog_url_list: list, group: str):
         return get_blog_url_list_K_sba(member_id, previous_blog_url_list)
     elif group == "H_sba":
         return get_blog_url_list_H_sba(member_id, previous_blog_url_list)
+    elif group == "S_sba":
+        return get_blog_url_list_S_sba(member_id, previous_blog_url_list)
     # elif group == "H":
     #     return get_blog_url_list_H(member_id, previous_blog_url_list)
     # elif group == "S":
@@ -64,6 +74,8 @@ def get_blog_content(url: str, repo_name: str, group: str):
         return get_blog_content_K_sba(url, repo_name)
     elif group == "H_sba":
         return get_blog_content_H_sba(url, repo_name)
+    elif group == "S_sba":
+        return get_blog_content_S_sba(url, repo_name)
     # elif group == "H":
     #     return get_blog_content_H(url, repo_name)
     # elif group == "S":
@@ -303,16 +315,26 @@ du_results = []
 # scrape_repo("19", "K_sba", du_results)
 # scrape_repo("22", "K_sba", du_results)
 
-scrape_repo("1", "H_sba", du_results)
-scrape_repo("2", "H_sba", du_results)
-scrape_repo("3", "H_sba", du_results)
-scrape_repo("4", "H_sba", du_results)
-scrape_repo("6", "H_sba", du_results)
-scrape_repo("10", "H_sba", du_results)
-scrape_repo("19", "H_sba", du_results)
-scrape_repo("20", "H_sba", du_results)
-scrape_repo("26", "H_sba", du_results)
+# scrape_repo("1", "H_sba", du_results)
+# scrape_repo("2", "H_sba", du_results)
+# scrape_repo("3", "H_sba", du_results)
+# scrape_repo("4", "H_sba", du_results)
+# scrape_repo("6", "H_sba", du_results)
+# scrape_repo("10", "H_sba", du_results)
+# scrape_repo("19", "H_sba", du_results)
+# scrape_repo("20", "H_sba", du_results)
+# scrape_repo("26", "H_sba", du_results)
 
+scrape_repo("04", "S_sba", du_results)
+scrape_repo("07", "S_sba", du_results)
+scrape_repo("11", "S_sba", du_results)
+scrape_repo("14", "S_sba", du_results)
+scrape_repo("15", "S_sba", du_results)
+scrape_repo("18", "S_sba", du_results)
+scrape_repo("20", "S_sba", du_results)
+scrape_repo("21", "S_sba", du_results)
+scrape_repo("44", "S_sba", du_results)
+scrape_repo("49", "S_sba", du_results)
 
 print(du_results)
 print("".join(du_results))
