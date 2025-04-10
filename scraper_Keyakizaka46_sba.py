@@ -57,7 +57,7 @@ def get_blog_url_list(member_id: str, previous_blog_url_list: list):
     articles_url_list = []
 
     while True:
-        soup = BeautifulSoup(requests.get(current_url).content.replace('"&gt;', '">'), "lxml")
+        soup = BeautifulSoup(requests.get(current_url).content, "html.parser")
         # print(soup.prettify())
         a_list = soup.find_all(
             "div", class_="blog-list blogs-view__blogs blogs-view__blogs--margin-side"
