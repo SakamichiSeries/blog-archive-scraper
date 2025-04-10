@@ -11,6 +11,12 @@ from scraper_Keyakizaka46_sba import (
     get_blog_content as get_blog_content_K_sba,
 )
 
+from scraper_Hinatazaka46_sba import (
+    get_profile as get_profile_H_sba,
+    get_blog_url_list as get_blog_url_list_H_sba,
+    get_blog_content as get_blog_content_H_sba,
+)
+
 # from scraper_Sakurazaka46 import (
 #     get_profile as get_profile_S,
 #     get_blog_url_list as get_blog_url_list_S,
@@ -30,6 +36,8 @@ from scraper_Keyakizaka46_sba import (
 def get_profile(member_id: str, group: str):
     if group == "K_sba":
         return get_profile_K_sba(member_id)
+    elif group == "H_sba":
+        return get_profile_H_sba(member_id)
     # elif group == "H":
     #     return get_profile_H(member_id)
     # elif group == "S":
@@ -41,6 +49,8 @@ def get_profile(member_id: str, group: str):
 def get_blog_url_list(member_id: str, previous_blog_url_list: list, group: str):
     if group == "K_sba":
         return get_blog_url_list_K_sba(member_id, previous_blog_url_list)
+    elif group == "H_sba":
+        return get_blog_url_list_H_sba(member_id, previous_blog_url_list)
     # elif group == "H":
     #     return get_blog_url_list_H(member_id, previous_blog_url_list)
     # elif group == "S":
@@ -52,6 +62,8 @@ def get_blog_url_list(member_id: str, previous_blog_url_list: list, group: str):
 def get_blog_content(url: str, repo_name: str, group: str):
     if group == "K_sba":
         return get_blog_content_K_sba(url, repo_name)
+    elif group == "H_sba":
+        return get_blog_content_H_sba(url, repo_name)
     # elif group == "H":
     #     return get_blog_content_H(url, repo_name)
     # elif group == "S":
