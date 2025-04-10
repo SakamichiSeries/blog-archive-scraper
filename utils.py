@@ -14,8 +14,10 @@ def add_host(img_src_url: str, group: str) -> str:
         return urllib.parse.urljoin("https://www.hinatazaka46.com/", img_src_url)
     elif group == "S":
         return urllib.parse.urljoin("https://www.sakurazaka46.com/", img_src_url)
+    elif group == "K_sba":
+        return urllib.parse.urljoin("https://images.sakamichi.co/", img_src_url)
     else:
-        print(img_src_url, group)
+        print("Exception:add_host", img_src_url, group)
         raise Exception
 
 
@@ -29,6 +31,7 @@ def download_image_return_path(img_src_url: str, repo_name: str, group: str) -> 
     # if os.path.exists(img_relative_path):
     #     print(f"File exists: {img_relative_path}")
     #     return "/" + img_relative_path
+    print(f"Downloading {img_full_url} to {img_relative_path}")
     os.makedirs(os.path.dirname(img_relative_path), exist_ok=True)
     fail_count = 0
     while True:
