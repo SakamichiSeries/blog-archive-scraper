@@ -1,4 +1,4 @@
-name: sba
+name: janelin612
 
 on:
   # schedule:
@@ -26,7 +26,7 @@ jobs:
         pip install -r requirements.txt
 
     - name: Run Python script
-      run: python scraper_sba.py
+      run: python scraper_Nogizaka46_janelin612.py
       env:
         TOKEN_GITHUB: ${{ secrets.TOKEN_GITHUB }}
         RUNNING_GITHUB_ACTIONS: True
