@@ -136,11 +136,12 @@ def scrape_repo(member_id: str, du_results: list):
         subprocess.run(["rm", "-rf", repo_name + "/images"])
         subprocess.run(["rm", "-rf", repo_name + "/result.json"])
 
-    result["profile_pic"] = download_image_return_path(
-        profile_json["image"],
-        result["repo_name"],
-        member_id,
-    )
+    if member_id != "40006":
+        result["profile_pic"] = download_image_return_path(
+            profile_json["image"],
+            result["repo_name"],
+            member_id,
+        )
 
     archive_url = f"https://janelin612.github.io/n46-crawler/mb/{member_id}/result.json"
     archive_json = requests.get(archive_url).json()
