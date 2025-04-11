@@ -12,7 +12,7 @@ jobs:
     steps:
     - name: clone
       run: |
-        git clone https://janelin612.github.io/n46-crawler/
+        git clone https://github.com/janelin612/n46-crawler/
     
     - name: checkout
       run: |
