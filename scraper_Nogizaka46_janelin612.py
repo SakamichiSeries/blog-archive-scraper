@@ -59,32 +59,48 @@ def scrape_repo(member_id: str, du_results: list):
     update_repo = not not os.getenv("RUNNING_GITHUB_ACTIONS")
 
     result = {}
-    profile_url = f"https://janelin612.github.io/n46-crawler/mb/{member_id}/member.json"
-    profile_json = requests.get(profile_url).json()
-    result["member_name_kanji"] = profile_json["name"]
-    result["member_name_kana"] = profile_json["name_hiragana"]
-    with open("members.json") as members_json:
-        members = json.load(members_json)
-        for member in members["NG"]:
-            if member[0] == result["member_name_kanji"]:
-                result["member_name_romaji"] = member[1]
-                break
+    if member_id == "40006":
+        result = {
+            "member_name_kanji": "研究生",
+            "member_name_kana": "",
+            "member_name_romaji": "kenkyusei",
+            "repo_name": "kenkyusei-blog-archive",
+            "SNS": {},
+            "生年月日": "",
+            "血液型": "",
+            "星座": "",
+            "身長": "",
+            "profile_pic": "https://upload.wikimedia.org/wikipedia/commons/9/92/Nogizaka46_logo.png",
+        }
+    else:
+        profile_url = (
+            f"https://janelin612.github.io/n46-crawler/mb/{member_id}/member.json"
+        )
+        profile_json = requests.get(profile_url).json()
+        result["member_name_kanji"] = profile_json["name"]
+        result["member_name_kana"] = profile_json["name_hiragana"]
+        with open("members.json") as members_json:
+            members = json.load(members_json)
+            for member in members["NG"]:
+                if member[0] == result["member_name_kanji"]:
+                    result["member_name_romaji"] = member[1]
+                    break
 
-    result["repo_name"] = (
-        result["member_name_romaji"].lower().replace(" ", "-") + "-blog-archive"
-    )
+        result["repo_name"] = (
+            result["member_name_romaji"].lower().replace(" ", "-") + "-blog-archive"
+        )
 
-    result["SNS"] = {}
-    SNS_url = f"https://janelin612.github.io/n46-crawler/mb/{member_id}/link.json"
-    try:
-        SNS_json = requests.get(SNS_url).json()
-        for entry in SNS_json:
-            result["SNS"][entry["type"]] = entry["link"]
-    except:
-        pass
+        result["SNS"] = {}
+        SNS_url = f"https://janelin612.github.io/n46-crawler/mb/{member_id}/link.json"
+        try:
+            SNS_json = requests.get(SNS_url).json()
+            for entry in SNS_json:
+                result["SNS"][entry["type"]] = entry["link"]
+        except:
+            pass
 
-    for entry in profile_json["intro"]:
-        result[entry["key"]] = entry["value"]
+        for entry in profile_json["intro"]:
+            result[entry["key"]] = entry["value"]
 
     print(result)
 
@@ -199,7 +215,45 @@ def scrape_repo(member_id: str, du_results: list):
 
 du_results = []
 
+scrape_repo("40006", du_results)
+scrape_repo("ami.noujo", du_results)
+scrape_repo("asuka.saito", du_results)
+scrape_repo("ayane.suzuki", du_results)
+scrape_repo("chiharu.saito", du_results)
+scrape_repo("erika.ikuta", du_results)
+scrape_repo("himeka.nakamoto", du_results)
+scrape_repo("hina.higuchi", du_results)
+scrape_repo("hina.kawago", du_results)
+scrape_repo("hinako.kitano", du_results)
+scrape_repo("junna.itou", du_results)
+scrape_repo("kana.nakada", du_results)
+scrape_repo("karin.itou", du_results)
+scrape_repo("kazumi.takayama", du_results)
+scrape_repo("kotoko.sasaki", du_results)
+scrape_repo("maaya.wada", du_results)
+scrape_repo("mahiro.kawamura", du_results)
+scrape_repo("mai.shinuchi", du_results)
+scrape_repo("mai.shiraishi", du_results)
 scrape_repo("manatsu.akimoto", du_results)
+scrape_repo("marika.ito", du_results)
+scrape_repo("minami.hoshino", du_results)
+scrape_repo("miona.hori", du_results)
+scrape_repo("miria.watanabe", du_results)
+scrape_repo("misa.eto", du_results)
+# scrape_repo("mizuki.yamashita", du_results)
+scrape_repo("momoko.oozono", du_results)
+scrape_repo("nanami.hashimoto", du_results)
+scrape_repo("nanase.nishino", du_results)
+scrape_repo("ranze.terada", du_results)
+scrape_repo("reika.sakurai", du_results)
+scrape_repo("rena.yamazaki", du_results)
+scrape_repo("rina.ikoma", du_results)
+scrape_repo("sayuri.inoue", du_results)
+scrape_repo("sayuri.matsumura", du_results)
+# scrape_repo("seira.hayakawa", du_results)
+scrape_repo("yumi.wakatsuki", du_results)
+# scrape_repo("yuri.kitagawa", du_results)
+scrape_repo("yuuri.saito", du_results)
 
 print(du_results)
 print("".join(du_results))
