@@ -136,7 +136,7 @@ def scrape_repo(member_id: str, du_results: list):
         tmp["time"] = entry["datetime"]
         tmp["url"] = entry["url"]
 
-        soup = BeautifulSoup(tmp["content"], "html.parser")
+        soup = BeautifulSoup(entry["content"], "html.parser")
         img_list = soup.find_all("img")
         for img in img_list:
             # Check if the img has a src attribute
