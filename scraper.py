@@ -278,5 +278,4 @@ for member in code_Sakurazaka46:
     scrape_repo(member, "S", du_results)
 for member in code_Hinatazaka46:
     scrape_repo(member, "H", du_results)
-print(du_results)
-print("".join(du_results))
+print("".join(sorted(du_results, key=lambda x: int(x.split("\t")[0]))))
