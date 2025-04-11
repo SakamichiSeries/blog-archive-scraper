@@ -135,7 +135,7 @@ def scrape_repo(member_id: str, du_results: list):
         tmp["title"] = entry["title"]
         tmp["time"] = entry["datetime"]
         tmp["url"] = entry["url"]
-        tmp["content"] = entry["content"]
+
         soup = BeautifulSoup(tmp["content"], "html.parser")
         img_list = soup.find_all("img")
         for img in img_list:
@@ -146,6 +146,7 @@ def scrape_repo(member_id: str, du_results: list):
                     result["repo_name"],
                     member_id,
                 )
+        tmp["content"] = str(soup).strip()
 
         result["blog"].append(tmp)
 
