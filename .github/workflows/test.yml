@@ -20,5 +20,5 @@ jobs:
 
     - name: usage
       run: |
-        du -hd1 n46-crawler/mb
+        du -md1 n46-crawler/mb
         
