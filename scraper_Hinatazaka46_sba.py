@@ -52,8 +52,8 @@ def get_profile(member_id: str):
 
 
 def get_blog_url_list(member_id: str, previous_blog_url_list: list):
-    current_page = 1
-    current_url = f"https://archive.sakamichi.co/hinata/members/{member_id}"
+    current_page = 100
+    current_url = f"https://archive.sakamichi.co/hinata/members/{member_id}/p{current_page}"
     articles_url_list = []
 
     while True:
