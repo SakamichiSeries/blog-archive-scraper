@@ -89,14 +89,6 @@ def scrape_repo(member_id: str, du_results: list):
     print(result)
 
     repo_name = result["repo_name"]
-    # # Fix profile_pic already exists leading to clone failing
-    # subprocess.run(["rm", "-rf", repo_name])
-
-    result["profile_pic"] = download_image_return_path(
-        profile_json["image"],
-        result["repo_name"],
-        member_id,
-    )
 
     if update_repo:
         # Replace with your GitHub token and organization name
@@ -127,6 +119,12 @@ def scrape_repo(member_id: str, du_results: list):
         subprocess.run(["rm", "-rf", repo_name + "/files"])
         subprocess.run(["rm", "-rf", repo_name + "/images"])
         subprocess.run(["rm", "-rf", repo_name + "/result.json"])
+
+    result["profile_pic"] = download_image_return_path(
+        profile_json["image"],
+        result["repo_name"],
+        member_id,
+    )
 
     archive_url = f"https://janelin612.github.io/n46-crawler/mb/{member_id}/result.json"
     archive_json = requests.get(archive_url).json()
@@ -170,16 +168,6 @@ def scrape_repo(member_id: str, du_results: list):
         # Add all changes
         subprocess.run(["git", "add", "-A"], check=True, cwd=repo_name)
 
-        url = f"https://api.github.com/repos/SakamichiSeries/{repo_name}/pages"
-        headers = {
-            "Accept": "application/vnd.github+json",
-            "Authorization": f"Bearer {token}",
-            "X-GitHub-Api-Version": "2022-11-28",
-        }
-        data = {"source": {"branch": "main", "path": "/"}}
-
-        response = requests.post(url, headers=headers, json=data)
-
         try:
             # Commit the changes
             subprocess.run(
@@ -192,6 +180,15 @@ def scrape_repo(member_id: str, du_results: list):
             subprocess.run(["git", "push"], check=True, cwd=repo_name)
         except:
             pass
+
+        url = f"https://api.github.com/repos/SakamichiSeries/{repo_name}/pages"
+        headers = {
+            "Accept": "application/vnd.github+json",
+            "Authorization": f"Bearer {token}",
+            "X-GitHub-Api-Version": "2022-11-28",
+        }
+        data = {"source": {"branch": "main", "path": "/"}}
+        requests.post(url, headers=headers, json=data)
 
         subprocess.run(["date"])
         du_result = subprocess.run(["du", "-sm", repo_name], capture_output=True)
