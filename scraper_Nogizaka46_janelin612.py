@@ -86,15 +86,17 @@ def scrape_repo(member_id: str, du_results: list):
     for entry in profile_json["intro"]:
         result[entry["key"]] = entry["value"]
 
+    print(result)
+
+    repo_name = result["repo_name"]
+    # # Fix profile_pic already exists leading to clone failing
+    # subprocess.run(["rm", "-rf", repo_name])
+
     result["profile_pic"] = download_image_return_path(
         profile_json["image"],
         result["repo_name"],
         member_id,
     )
-
-    print(result)
-
-    repo_name = result["repo_name"]
 
     if update_repo:
         # Replace with your GitHub token and organization name
