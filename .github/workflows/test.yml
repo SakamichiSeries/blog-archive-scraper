@@ -1,0 +1,24 @@
+name: test
+
+on:
+#   schedule:
+#     - cron: '20 20 * * *'
+  workflow_dispatch:
+
+jobs:
+  run-script:
+    runs-on: ubuntu-latest
+
+    steps:
+    - name: clone
+      run: |
+        git clone https://janelin612.github.io/n46-crawler/
+    
+    - name: checkout
+      run: |
+        git -C n46-crawler checkout gh-pages
+
+    - name: usage
+      run: |
+        du -hd1 n46-crawler/mb
+        
