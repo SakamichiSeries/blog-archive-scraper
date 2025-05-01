@@ -70,16 +70,17 @@ def scrape_repo(member_id: str, group: str, du_results: list):
     # Fix profile_pic already exists leading to clone failing
     subprocess.run(["rm", "-rf", repo_name])
 
-    previous_blog_url_list = []
-    result_json_url = f"https://SakamichiSeries.GitHub.io/{repo_name}/result.json"
-    previous_json = requests.get(result_json_url).json()
-    for blog_entry in previous_json["blog"]:
-        previous_blog_url_list.append(blog_entry["url"])
-        # print("Previous blog url: " + blog_entry["url"])
-    blogs_url_list = get_blog_url_list(member_id, previous_blog_url_list, group)
-    print(str(result))
-    print(blogs_url_list)
-    return
+    # for better performance, uncomment the following lines
+    # previous_blog_url_list = []
+    # result_json_url = f"https://SakamichiSeries.GitHub.io/{repo_name}/result.json"
+    # previous_json = requests.get(result_json_url).json()
+    # for blog_entry in previous_json["blog"]:
+    #     previous_blog_url_list.append(blog_entry["url"])
+    #     # print("Previous blog url: " + blog_entry["url"])
+    # blogs_url_list = get_blog_url_list(member_id, previous_blog_url_list, group)
+    # print(str(result))
+    # print(blogs_url_list)
+    # return
 
     if update_repo:
         # Replace with your GitHub token and organization name
