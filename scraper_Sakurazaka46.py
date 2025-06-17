@@ -8,6 +8,19 @@ from utils import add_host, download_image_return_path
 
 
 def get_profile(member_id: str):
+    if str(member_id).startswith("2001"):
+        return {
+            "member_name_kanji": "四期生",
+            "member_name_kana": "",
+            "member_name_romaji": "sakurazaka46-yonkisei",
+            "repo_name": "sakurazaka46-yonkisei-blog-archive",
+            "SNS": {},
+            "生年月日": "",
+            "血液型": "",
+            "星座": "",
+            "身長": "",
+            "profile_pic": "https://upload.wikimedia.org/wikipedia/commons/thumb/7/7a/Sakurazaka46_logo.svg/386px-Sakurazaka46_logo.svg.png",
+        }
     result = {}
     profile_url = f"https://sakurazaka46.com/s/s46/artist/{member_id}"
     soup = BeautifulSoup(requests.get(profile_url).content, "lxml")
