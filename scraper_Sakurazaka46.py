@@ -24,7 +24,7 @@ def get_profile(member_id: str):
     result = {}
     profile_url = f"https://sakurazaka46.com/s/s46/artist/{member_id}"
     soup = BeautifulSoup(requests.get(profile_url).content, "lxml")
-    result["member_name_kanji"] = soup.find_all("p", class_="name")[0].get_text()
+    result["member_name_kanji"] = soup.find_all("p", class_="name")[0].get_text().strip() # <p class="name">山田 桃実    </p>
     result["member_name_kana"] = soup.find_all("p", class_="kana")[0].get_text()
     with open("members.json") as members_json:
         members = json.load(members_json)
